@@ -1,6 +1,6 @@
 class DailyProblem
 	
-	def threeDigitPalindrome
+	def self.threeDigitPalindrome
 	i1 = 100
 	i2 = 100
 	currMax = 0
@@ -10,9 +10,11 @@ class DailyProblem
 			while i1 <= 999
 				currMax = (i1 * i2).to_s
                 puts i1.to_s + ' ' + i2.to_s
-				if isPalindrome?(currMax)
+				if self.isPalindromeAlt?(currMax)
 					if currMax.to_i > lastMax
 						lastMax = currMax.to_i
+						firstNum = i1
+						secNum = i2
 					end
 				end
 				i1 += 1
@@ -22,17 +24,25 @@ class DailyProblem
             puts i2
 		end
 		puts 'The Largest Palindrome that is the product of two three digit number is ' + lastMax.to_s
+		puts 'The two numbers that ' + lastMax.to_s + ' is a prodcut of are ' + firstNum.to_s + ' and ' + secNum.to_s
 	end
-
-	def isPalindrome?(productOf)
-        if productOf.length == 1
+	
+	def self.isPalindrome?(productOf)
+        
+		if productOf.length == 1
             return true
-        end
-    	if (productOf[0] == productOf[-1]) && (isPalindrome?( productOf[1.. -2]))
-			true
+		elsif productOf[0] != productOf[-1]
+			return false
+		elsif productOf.length == 2
+			return true
 		else
-			false
-		end
+			(isPalindrome?( productOf[1.. -2]))
+        end
+ 
+	end
+	
+	def self.isPalindromeAlt?(productOf)
+		productOf == productOf.reverse
 	end
 
 end
