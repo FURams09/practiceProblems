@@ -1,36 +1,51 @@
-def Collatz():
-    collNum = 1 #the most recent number in the chain, initialize to 1
+collatz_dict = {}
+
+def Collatz(maxStart, progress=1000):
     longestChain = [[0,0]]
     storedChain = []
-    for i in range(collNum, 10000):
-        cnt = 0 #number of iterations, initialize to 0 
-        while collNum > 1:
-            knownCount = getIterations(storedChain, collNum)
-            if i == 74:
-                assert 'i == 74'
-            if knownCount != 0:
-                cnt += knownCount
-                break
-            if collNum % 2 == 0:
-                collNum = collNum/2
-                #print [i, collNum]
-            else:
-                collNum = collNum*3 +1
-                #print [i, collNum]
-            cnt += 1
+    avgPath = 0
+    for i in range(maxStart):
+        currentCollatzLength = findCollatz(i + 1)
+        storedChain.append([currentCollatzLength, i+1]) #keep a list of all of the             
 ##        if cnt > longestChain[0][0]: #the longestChain list is [cnt, startNumber]
 ##            longestChain = [[cnt, i]]
 ##        elif cnt == longestChain [0][0]:
 ##            longestChain.append([cnt, i])
-        storedChain.append([cnt, i])
-        #print storedChain
-        collNum = i + 1
-        cnt = 0
-    print sorted(storedChain, key=lambda iterations: iterations[-0], reverse=True)
+        if (i + 1) % progress ==0:
+            print i + 1
+    storedChain = sorted(storedChain, key=lambda iterations: iterations[0], reverse=True)
+    for j in range(len(storedChain)):
+        avgPath += storedChain[j][0]
+    avgPath = avgPath/float(len(storedChain))
+    print 'mean average path length: ' + str(avgPath)
+    print 'median average path length: ' + str(storedChain[maxStart/2])
+    print 'largest combination: ' + str(storedChain[0])
 
-def getIterations(knownIterations, findNum):
-    #look up if the next number in the Collatz pattern has already been found. 
-    for i in range(len(knownIterations)):
-        if knownIterations[i][1] == findNum:
-            return knownIterations[i][0]
-    return 0
+def findCollatz(startNum):
+    cnt = 0 #number of iterations, initialize to 0
+    currNum = startNum
+    while currNum > 1:
+        if currNum % 2 == 0:
+            currNum = currNum/2
+            #print [i, collNum]
+        else:
+            currNum = currNum *3 +1
+            #print [i, collNum]
+            
+        cnt += 1
+    return cnt
+
+def showAllCollatz(maxStart, viewPosition=0, viewRange =False):
+    assert (type(viewPosition) is int), "viewPosition must be type int"
+    assert (type(viewRange) is bool), "viewRange must be True or False"
+    assert (type(maxStart) is int), "maxStart must be type int"
+    allCollatz = []
+    for i in range(1, maxStart+1):
+        allCollatz.append([findCollatz(i), i])
+        
+    if viewPosition ==0:
+        print sorted(allCollatz, key=lambda iterations: iterations[0], reverse=True)
+    elif viewRange == False:
+        print sorted(allCollatz, key=lambda iterations: iterations[0], reverse=True)[(viewPosition)]
+    elif viewRange == True:
+        print sorted(allCollatz, key=lambda iterations: iterations[0], reverse=True)[:(viewPosition)]
