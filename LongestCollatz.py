@@ -1,27 +1,22 @@
 collatz_dict = {}
-
+#in general the lists/dictionary are [start number, number of iterations]
 def Collatz(maxStart, progress=1000):
     longestChain = [[0,0]]
-    storedChain = []
     avgPath = 0
-    for i in range(maxStart):
-        currentCollatzLength = findCollatz(i + 1)
-        storedChain.append([currentCollatzLength, i+1]) #keep a list of all of the             
-##        if cnt > longestChain[0][0]: #the longestChain list is [cnt, startNumber]
-##            longestChain = [[cnt, i]]
-##        elif cnt == longestChain [0][0]:
-##            longestChain.append([cnt, i])
-        if (i + 1) % progress ==0:
-            print i + 1
-    storedChain = sorted(storedChain, key=lambda iterations: iterations[0], reverse=True)
-    for j in range(len(storedChain)):
-        avgPath += storedChain[j][0]
-    avgPath = avgPath/float(len(storedChain))
+    for i in range(1, maxStart + 1):
+        addCollatz(i)            
+        if (i) % progress ==0:
+            print i
+    collatz_dict = sorted(collatz_dict, key=lambda iterations: iterations[1], reverse=True)
+    for j in range(len(collatz_dict)):
+        avgPath += collatz_dict[j]
+    avgPath = avgPath/float(len(collatz_dict))
     print 'mean average path length: ' + str(avgPath)
     print 'median average path length: ' + str(storedChain[maxStart/2])
     print 'largest combination: ' + str(storedChain[0])
 
-def findCollatz(startNum):
+def addCollatz(startNum):
+    #adds a number to a data dictionary
     cnt = 0 #number of iterations, initialize to 0
     currNum = startNum
     while currNum > 1:
@@ -31,21 +26,25 @@ def findCollatz(startNum):
         else:
             currNum = currNum *3 +1
             #print [i, collNum]
-            
+
+        if currNum in collatz_dict:
+            cnt += collatz_dict[currNum] + 1 #the One is for the last number that led to the known.
+            collatz_dict[startNum] = cnt
+            return cnt
         cnt += 1
+    collatz_dict[currNum] = cnt
     return cnt
 
 def showAllCollatz(maxStart, viewPosition=0, viewRange =False):
+    #used to display the full dictionary or find a specific entry. Can also show the first x entires
     assert (type(viewPosition) is int), "viewPosition must be type int"
     assert (type(viewRange) is bool), "viewRange must be True or False"
     assert (type(maxStart) is int), "maxStart must be type int"
-    allCollatz = []
     for i in range(1, maxStart+1):
-        allCollatz.append([findCollatz(i), i])
-        
+        addCollatz(i)   
     if viewPosition ==0:
-        print sorted(allCollatz, key=lambda iterations: iterations[0], reverse=True)
+        print sorted( ((y,x) for y, x in collatz_dict.iteritems()), reverse=True)
     elif viewRange == False:
-        print sorted(allCollatz, key=lambda iterations: iterations[0], reverse=True)[(viewPosition)]
+        print sorted( ((x,y) for y, x in collatz_dict.iteritems()), reverse=True)[(viewPosition)]
     elif viewRange == True:
-        print sorted(allCollatz, key=lambda iterations: iterations[0], reverse=True)[:(viewPosition)]
+        print sorted( ((x,y) for y, x in collatz_dict.iteritems()), reverse=True)[:(viewPosition)]
