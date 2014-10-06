@@ -19,6 +19,9 @@ def nestEggFixed(salary, save, growthRate, years):
       the end of each year.
     """
     # TODO: Your code here.
+    currentValue = [salary * (save *.01)] #this holds the value of the fund
+    for i in range(years):
+        currentValue.append(currentValue[i]* (1 + (growthRate * .01)) + (salary * (save * .01)))
 
 def testNestEggFixed():
     salary     = 10000
@@ -31,7 +34,9 @@ def testNestEggFixed():
     # [1000.0, 2150.0, 3472.5, 4993.375, 6742.3812499999995]
 
     # TODO: Add more test cases here.
-
+    print nestEggFixed(75000, 8, 7, 30)
+    print nestEggFixed(100000, 60, 15, 20)
+    print nestEggFixed(100000, 15, 60, 20)
 #
 # Problem 2
 #
@@ -46,7 +51,10 @@ def nestEggVariable(salary, save, growthRates):
       account (integers between 0 and 100).
     - return: a list of your retirement account value at the end of each year.
     """
-
+    currentValue = [salary * (save *.01)] #this holds the value of the fund
+    for i in range(1, len(growthRates)):
+        currentValue.append(currentValue[i -1] * (1 + (growthRates[i] * .01)) + (salary * (save * .01)))
+    return currentValue
 def testNestEggVariable():
     salary      = 10000
     save        = 10
@@ -57,7 +65,7 @@ def testNestEggVariable():
     # [1000.0, 2040.0, 3142.0, 4142.0, 5266.2600000000002]
 
     # TODO: Add more test cases here.
-	
+
 #
 # Problem 3
 #
