@@ -5,6 +5,7 @@ Used for my practice daily problems so I can go back and look at them/refactor t
 10/03/2014 - Problems 3 & 4 from MIT open course ware intro to cs Problem Set 4. (1 and 2 were done at home, will merge these if I get a chance)
 10/03/03 - Longest Collatz - https://projecteuler.net/problem=14
 10/06/2014 - FindMaxProducts - https://projecteuler.net/problem=8
-
+10/07/2014 - Added old Problems from the MIT Course that were completed
+10/08/2014 - Find Lattice Path - https://projecteuler.net/problem=15
 
 
