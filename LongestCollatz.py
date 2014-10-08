@@ -23,8 +23,7 @@ def addCollatz(startNum):
         if currNum % 2 == 0:
             currNum = currNum/2
             #print [i, collNum]
-        else:
-            currNum = currNum *3 +1
+        elsedddcurrNum = currNum *3 +1
             #print [i, collNum]
 
         if currNum in collatz_dict:
