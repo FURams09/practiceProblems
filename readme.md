@@ -8,4 +8,5 @@ Used for my practice daily problems so I can go back and look at them/refactor t
 10/07/2014 - Added old Problems from the MIT Course that were completed
 10/08/2014 - Find Lattice Path - https://projecteuler.net/problem=15
 10/09/2014 - Number Letter Count - https://projecteuler.net/problem=17
+10/14/2014 - Count Number of Sundays - https://projecteuler.net/problem=19
 
