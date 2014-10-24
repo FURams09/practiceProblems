@@ -11,3 +11,4 @@ Used for my practice daily problems so I can go back and look at them/refactor t
 10/14/2014 - Count Number of Sundays - https://projecteuler.net/problem=19
 10/18/2014 - Amicable Numbers of divisor sums - https://projecteuler.net/problem=21
 10/22/2014 - Spiral Numbers - https://projecteuler.net/problem=28
+10/23/2014 - Non Amicable Numbers - https://projecteuler.net/problem=23
