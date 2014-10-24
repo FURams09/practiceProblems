@@ -10,3 +10,4 @@ Used for my practice daily problems so I can go back and look at them/refactor t
 10/09/2014 - Number Letter Count - https://projecteuler.net/problem=17
 10/14/2014 - Count Number of Sundays - https://projecteuler.net/problem=19
 10/18/2014 - Amicable Numbers of divisor sums - https://projecteuler.net/problem=21
+10/22/2014 - Spiral Numbers - https://projecteuler.net/problem=28
