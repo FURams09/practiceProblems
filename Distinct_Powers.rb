@@ -9,6 +9,5 @@ def getSquares(maxBound = 100)
 			end
 		end
 	end
-	puts primeList
 	puts primeList.length
 end

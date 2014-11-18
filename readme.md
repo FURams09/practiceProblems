@@ -11,4 +11,6 @@ Used for my practice daily problems so I can go back and look at them/refactor t
 10/14/2014 - Count Number of Sundays - https://projecteuler.net/problem=19
 10/18/2014 - Amicable Numbers of divisor sums - https://projecteuler.net/problem=21
 10/22/2014 - Spiral Numbers - https://projecteuler.net/problem=28
-10/23/2014 - Non Amicable Numbers - https://projecteuler.net/problem=23
+10/24/2014 - 10/31/2014 - Non Abundant Numbers - https://projecteuler.net/problem=23
+10/01/2014 - Word Games from PS5 of MIT open courseware intro to CS. 
+11/18/2014- added word Games 2 from PS6 of MIT Open CourseWare intro to CS.
