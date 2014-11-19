@@ -22,6 +22,8 @@ SCRABBLE_LETTER_VALUES = {
 
 WORDLIST_FILENAME = "words.txt"
 
+#Implemented in ch 6 to store a 
+POINTS_DICT = {}
 def load_words():
     """
     Returns a list of valid words. Words are strings of lowercase letters.
@@ -37,6 +39,8 @@ def load_words():
     for line in inFile:
         wordlist.append(line.strip().lower())
     print "  ", len(wordlist), "words loaded."
+
+    get_words_to_points(wordlist)
     return wordlist
 
 def get_frequency_dict(sequence):
@@ -171,8 +175,10 @@ def is_valid_word(word, hand, word_list):
     hand: dictionary (string -> int)
     word_list: list of lowercase strings
     """
-    tempHand = hand
+
     # TO DO ...
+    '''
+    #commented out for lesson 6 to change this to a dictionary lookup
     if word_list.count(word) == 0:
         return False
     
@@ -180,7 +186,11 @@ def is_valid_word(word, hand, word_list):
         if tempHand.get(i, 0) < word.count('i'):
             return False
     return True
-
+    '''
+    if word in POINTS_DICT:
+        return True
+    else:
+        return False
 #
 # Problem #4: Playing a hand
 #
@@ -295,8 +305,15 @@ def play_game(word_list):
             break
         else:
             print "Invalid command."
+def pick_best_word(hand, points_dict):
+    #Return the highest scoring word from points_dict that can be made with the given hand.
+    #Return '.' if no words can be made with the given hand
+    
 
-
+def get_words_to_points(word_list):
+    #Return a dict that maps every word in word_list to its point value
+    for word in word_list:
+        POINTS_DICT[word] = get_word_score(word, HAND_SIZE)
 # Build data structures used for entire session and play game
 #
 if __name__ == '__main__':
