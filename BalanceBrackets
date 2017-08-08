@@ -1,0 +1,40 @@
+function isBalanced(s) {
+    // Complete this function
+    var arrString = s.split('');
+    var openBraces = [];
+    var currentBrace;
+    if (arrString.length %2 !== 0 ) {
+        return 'NO'
+    }
+    while (arrString.length > 0) {
+        currentBrace = arrString.shift();
+        if (currentBrace === '{' || currentBrace === '[' || currentBrace === '(') {
+            openBraces.push(currentBrace)
+        } else {
+            if (openBraces.length === 0) {
+                return 'NO';
+            }
+            switch (openBraces.pop()) {
+                case '{':
+                    if (currentBrace !== '}') {
+                        return 'NO';
+                    }
+                    break;
+                case '(':
+                    if (currentBrace !== ')') {
+                        return 'NO';
+                    }
+                    break;
+                case'[':
+                    if (currentBrace !== ']') {
+                        return 'NO';
+                    }
+                    break;
+                default:
+                    return 'NO';
+            }
+        }
+        
+    }
+    return 'YES'
+}
