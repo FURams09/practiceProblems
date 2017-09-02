@@ -36,5 +36,9 @@ function isBalanced(s) {
         }
         
     }
-    return 'YES'
+    if (openBraces.length === 0 ) {
+        return 'YES'
+    } else {
+        return 'NO'
+    }
 }
